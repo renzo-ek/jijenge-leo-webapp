@@ -12,7 +12,7 @@ const projectsData = [
     image: "/images/projects/1.png",
     tag: ["All", "Web"],
     gitUrl: "/",
-    previewUrl: "https://acme-org-site.vercel.app/",
+    previewUrl: "https://www.acmekenya.org/",
   },
   {
     id: 2,
