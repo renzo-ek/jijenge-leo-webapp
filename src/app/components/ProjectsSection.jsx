@@ -12,7 +12,7 @@ const projectsData = [
     image: "/images/projects/1.png",
     tag: ["All", "Web"],
     gitUrl: "/",
-    previewUrl: "https://acme-org-site.vercel.app/",
+    previewUrl: "https://www.acmekenya.org/",
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const projectsData = [
   {
     id: 3,
     title: "Medical Alliance Application",
-    description: "Project 3 description",
+    description: "Post-Med Student Alliance",
     image: "/images/projects/3.png",
     tag: ["All", "Web"],
     gitUrl: "/",
