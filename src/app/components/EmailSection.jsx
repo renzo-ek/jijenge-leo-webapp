@@ -36,7 +36,6 @@ const EmailSection = () => {
         setEmailSubmitted(true);
       } else {
         console.error("Error sending message:", resData.error);
-        // Show an error message to the user
         alert("Failed to send message. Please try again later.");
       }
     } catch (error) {

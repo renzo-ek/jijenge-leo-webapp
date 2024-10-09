@@ -1,30 +1,30 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import SibApiV3Sdk from '@getbrevo/brevo';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-const fromEmail = process.env.FROM_EMAIL;
-const toEmail = process.env.TO_EMAIL; // Add this line
+const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+const apiKey = apiInstance.authentications['apiKey'];
+apiKey.apiKey = process.env.BREVO_API_KEY;
 
-export async function POST(req, res) {
+const senderEmail = process.env.SENDER_EMAIL;
+const senderName = process.env.SENDER_NAME;
+const toEmail = process.env.TO_EMAIL;
+
+export async function POST(req) {
   const { email, subject, message } = await req.json();
   console.log("Received request:", { email, subject, message });
-  console.log("Environment variables:", { fromEmail, toEmail });
+
+  const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+  sendSmtpEmail.subject = subject;
+  sendSmtpEmail.htmlContent = `<html><body><h1>${subject}</h1><p>From: ${email}</p><p>${message}</p></body></html>`;
+  sendSmtpEmail.sender = { name: senderName, email: senderEmail };
+  sendSmtpEmail.to = [{ email: toEmail }];
+  sendSmtpEmail.replyTo = { email: email };
 
   try {
     console.log("Attempting to send email...");
-    const data = await resend.emails.send({
-      from: fromEmail,
-      to: [toEmail], // Send to your personal email
-      reply_to: email, // Set reply-to as the sender's email
-      subject: subject,
-      html: `
-        <h1>${subject}</h1>
-        <p>From: ${email}</p>
-        <p>${message}</p>
-      `,
-    });
-    console.log("Email sent successfully:", data);
-    return NextResponse.json(data);
+    const data = await apiInstance.sendTransacEmail(sendSmtpEmail);
+    console.log('Email sent successfully. Returned data: ' + JSON.stringify(data));
+    return NextResponse.json({ message: "Email sent successfully" });
   } catch (error) {
     console.error("Error sending email:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
