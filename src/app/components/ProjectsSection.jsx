@@ -26,7 +26,7 @@ const projectsData = [
   {
     id: 3,
     title: "Medical Alliance Application",
-    description: "Post-Med Student Alliance",
+    description: "Private Community Site",
     image: "/images/projects/3.png",
     tag: ["All", "Web"],
     gitUrl: "/",
@@ -35,7 +35,7 @@ const projectsData = [
   {
     id: 4,
     title: "Food Ordering Application",
-    description: "Project 4 description",
+    description: "In Re-development",
     image: "/images/projects/4.png",
     tag: ["All", "Mobile"],
     gitUrl: "/",
