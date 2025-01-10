@@ -12,6 +12,7 @@ const TAB_DATA = [
         <li>Node.js</li>
         <li>Express</li>
         <li>PostgreSQL</li>
+        <li>MongoDB</li>
         <li>SCSS</li>
         <li>JavaScript</li>
         <li>React</li>
