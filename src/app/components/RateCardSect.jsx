@@ -29,7 +29,7 @@ const RateCardSection = () => {
     },
     {
       id: 2,
-      title: "Business Website",
+      title: "Business Website(hosting excluded)",
       price: "100,000",
       duration: "6 months",
       description: "Professional website for small & medium businesses",
