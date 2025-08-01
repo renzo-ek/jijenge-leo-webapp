@@ -42,7 +42,7 @@ const RateCard = ({ imgUrl, title, description, rates, details }) => {
 
         {/* Details Container */}
         <div className="bg-gray-50 p-4 rounded-lg flex-grow">
-          <h3 className="font-semibold text-gray-800 mb-2">What's Included:</h3>
+          <h3 className="font-semibold text-gray-800 mb-2">What is Included:</h3>
           <ul className="list-disc pl-5 space-y-1 text-gray-700">
             {details.map((detail, index) => (
               <li key={index}>{detail}</li>
