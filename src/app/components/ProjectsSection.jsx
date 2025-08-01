@@ -34,7 +34,7 @@ const projectsData = [
   },
   {
     id: 4,
-    title: "Food Ordering Application",
+    title: "Ecommerce Application",
     description: "In Re-development",
     image: "/images/projects/4.png",
     tag: ["All", "Mobile"],
@@ -52,8 +52,8 @@ const projectsData = [
   },
   {
     id: 6,
-    title: "Full-stack Roadmap",
-    description: "Road Map",
+    title: "SpareParts Mobile Application",
+    description: "Autospares",
     image: "/images/projects/6.png",
     tag: ["All", "Web"],
     gitUrl: "/",
