@@ -56,8 +56,8 @@ const projectsData = [
     description: "Autospares",
     image: "/images/projects/6.png",
     tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://github.com/Imoite-zn/BidMartZ",
+    previewUrl: "https://github.com/Imoite-zn/BidMartZ",
   },
 ];
 
