@@ -53,6 +53,7 @@ const HeroSection = () => {
             1000,
           ]
         };
+      /*
       case 2:
         return {
           className: "gradient-text-animate",
@@ -107,11 +108,12 @@ const HeroSection = () => {
             600,
           ]
         };
+      */
       default:
         return {
-          className: "",
+          className: "glitch-text",
           cursor: true,
-          style: {},
+          style: { position: 'relative' },
           sequence: [
             "Jijenge Leo",
             1000,
@@ -143,7 +145,7 @@ const HeroSection = () => {
           onLoadedData={() => setIsVideoLoaded(true)}
           poster="/images/hero-video-poster.jpg"
         >
-          <source src="../videos/hero-background.mp4" type="video/mp4" />
+          <source src="../videos/hero-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         
@@ -267,7 +269,8 @@ const HeroSection = () => {
           100% { transform: translate(0) }
         }
         
-        /* Gradient animation */
+        /* Commented out other animation styles
+        /* Gradient animation 
         .gradient-text-animate {
           background: linear-gradient(90deg, #ff8a00, #e52e71, #ff8a00);
           background-size: 200% auto;
@@ -281,7 +284,7 @@ const HeroSection = () => {
           100% { background-position: 200% center; }
         }
         
-        /* Typewriter effect */
+        /* Typewriter effect 
         .typewriter-effect {
           border-right: 3px solid white;
           animation: blink-caret 0.75s step-end infinite;
@@ -292,7 +295,7 @@ const HeroSection = () => {
           50% { border-color: white; }
         }
         
-        /* Bounce effect */
+        /* Bounce effect 
         .bounce-text {
           display: inline-block;
         }
@@ -308,6 +311,7 @@ const HeroSection = () => {
           0% { transform: translateY(0); }
           100% { transform: translateY(-5px); }
         }
+        */
       `}</style>
     </section>
   );
