@@ -8,15 +8,15 @@ const HeroSection = () => {
   const videoRef = useRef(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [animationStyle, setAnimationStyle] = useState(0);
+  const [key, setKey] = useState(0); // Key to force re-render of TypeAnimation
 
   useEffect(() => {
-    // Check if device is mobile to handle autoplay restrictions
     const checkMobile = () => {
       setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
     };
     checkMobile();
     
-    // Attempt to play video programmatically (required for some browsers)
     const tryAutoPlay = () => {
       if (videoRef.current) {
         videoRef.current.play().catch(error => {
@@ -28,11 +28,111 @@ const HeroSection = () => {
     tryAutoPlay();
   }, []);
 
+  // Function to cycle through animation styles
+  const cycleAnimationStyle = () => {
+    setAnimationStyle((prev) => (prev + 1) % 5);
+    setKey(prev => prev + 3); // Change key to force re-render
+  };
+
+  // Different animation configurations
+  const getAnimationConfig = () => {
+    switch(animationStyle) {
+      case 1:
+        return {
+          className: "glitch-text",
+          cursor: true,
+          style: { position: 'relative' },
+          sequence: [
+            "Jijenge Leo",
+            1000,
+            "Build the physicality of your dreams",
+            1000,
+            "Get jacked",
+            1000,
+            "Diet and Train with experts now",
+            1000,
+          ]
+        };
+      case 2:
+        return {
+          className: "gradient-text-animate",
+          cursor: false,
+          style: { 
+            background: 'linear-gradient(90deg, #ff8a00, #e52e71)', 
+            backgroundClip: 'text', 
+            WebkitBackgroundClip: 'text', 
+            color: 'transparent',
+            display: 'inline-block'
+          },
+          sequence: [
+            "Jijenge Leo",
+            800,
+            "Build the physicality of your dreams",
+            800,
+            "Get jacked",
+            800,
+            "Diet and Train with experts now",
+            800,
+          ]
+        };
+      case 3:
+        return {
+          className: "typewriter-effect",
+          cursor: true,
+          style: { fontFamily: 'monospace', borderRight: '3px solid white' },
+          sequence: [
+            "Jijenge Leo",
+            1200,
+            "Build the physicality of your dreams",
+            1200,
+            "Get jacked",
+            1200,
+            "Diet and Train with experts now",
+            1200,
+          ]
+        };
+      case 4:
+        return {
+          className: "bounce-text",
+          cursor: true,
+          style: { fontWeight: '900', display: 'inline-block' },
+          sequence: [
+            "Jijenge Leo",
+            600,
+            "Build the physicality of your dreams",
+            600,
+            "Get jacked",
+            600,
+            "Diet and Train with experts now",
+            600,
+          ]
+        };
+      default:
+        return {
+          className: "",
+          cursor: true,
+          style: {},
+          sequence: [
+            "Jijenge Leo",
+            1000,
+            "Build the physicality of your dreams",
+            1000,
+            "Get jacked",
+            1000,
+            "Diet and Train with experts now",
+            1000,
+          ]
+        };
+    }
+  };
+
+  const animationConfig = getAnimationConfig();
+
   return (
     <section className="relative lg:py-16 min-h-screen flex items-center overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-        <div className="absolute inset-0 bg-black/70 z-10"></div> {/* Dark overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black/70 z-10"></div>
         <video
           ref={videoRef}
           autoPlay
@@ -41,13 +141,12 @@ const HeroSection = () => {
           playsInline
           className="w-full h-full object-cover"
           onLoadedData={() => setIsVideoLoaded(true)}
-          poster="/images/hero-video-poster.jpg" // Fallback image
+          poster="/images/hero-video-poster.jpg"
         >
           <source src="../videos/hero-background.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         
-        {/* Loading state */}
         {!isVideoLoaded && (
           <div className="absolute inset-0 flex items-center justify-center z-20">
             <div className="animate-pulse text-gray-300">Loading video...</div>
@@ -70,23 +169,24 @@ const HeroSection = () => {
               </span>
               <br />
               <div className="relative inline-block">
-                {/* Text shadow for better readability on video background */}
                 <TypeAnimation
-                  sequence={[
-                    "Jijenge Leo",
-                    1000,
-                    "Build the physicality of your dreams",
-                    1000,
-                    "Get jacked",
-                    1000,
-                    "Diet and Train with experts now",
-                    1000,
-                  ]}
+                  key={key} // Key to force re-render
+                  sequence={animationConfig.sequence}
                   wrapper="span"
                   speed={50}
                   repeat={Infinity}
-                  className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" // Text shadow for better readability
+                  className={`drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] ${animationConfig.className}`}
+                  style={animationConfig.style}
+                  cursor={animationConfig.cursor}
                 />
+                {/* Animation style toggle button */}
+                <button 
+                  onClick={cycleAnimationStyle}
+                  className="absolute -right-12 top-1/2 transform -translate-y-1/2 text-white bg-primary-500 rounded-full w-8 h-8 flex items-center justify-center text-sm opacity-70 hover:opacity-100 transition-opacity"
+                  title="Change text animation"
+                >
+                  <span className="transform rotate-90">A</span>
+                </button>
               </div>
             </h1>
             <p className="text-[#F1F1F1] text-base sm:text-lg mb-6 lg:text-xl drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
@@ -110,7 +210,6 @@ const HeroSection = () => {
             </div>
           </motion.div>
           
-          {/* Optional: You can keep the circular video element if needed */}
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -118,7 +217,6 @@ const HeroSection = () => {
             className="col-span-4 place-self-center mt-8 lg:mt-0"
           >
             <div className="rounded-full bg-gradient-to-br from-primary-500/20 to-secondary-500/20 w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative overflow-hidden shadow-2xl border-4 border-white/10">
-              {/* You can place additional content here if needed */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <span className="text-white text-lg font-semibold">Fitness Transformation</span>
               </div>
@@ -126,6 +224,91 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Animation-specific styles */}
+      <style jsx global>{`
+        /* Glitch effect */
+        .glitch-text {
+          position: relative;
+          display: inline-block;
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+          content: attr(data-text);
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0.8;
+        }
+        .glitch-text::before {
+          animation: glitch-animation 2s infinite;
+          color: #ff00cc;
+          z-index: -1;
+          left: 2px;
+          text-shadow: -1px 0 #ff00cc;
+          clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+        }
+        .glitch-text::after {
+          animation: glitch-animation 2.5s infinite;
+          color: #00ffff;
+          z-index: -2;
+          left: -2px;
+          text-shadow: 1px 0 #00ffff;
+          clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+        }
+        @keyframes glitch-animation {
+          0% { transform: translate(0) }
+          20% { transform: translate(-3px, 3px) }
+          40% { transform: translate(-3px, -3px) }
+          60% { transform: translate(3px, 3px) }
+          80% { transform: translate(3px, -3px) }
+          100% { transform: translate(0) }
+        }
+        
+        /* Gradient animation */
+        .gradient-text-animate {
+          background: linear-gradient(90deg, #ff8a00, #e52e71, #ff8a00);
+          background-size: 200% auto;
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: gradient-animation 3s linear infinite;
+        }
+        @keyframes gradient-animation {
+          0% { background-position: 0% center; }
+          100% { background-position: 200% center; }
+        }
+        
+        /* Typewriter effect */
+        .typewriter-effect {
+          border-right: 3px solid white;
+          animation: blink-caret 0.75s step-end infinite;
+          padding-right: 3px;
+        }
+        @keyframes blink-caret {
+          from, to { border-color: transparent }
+          50% { border-color: white; }
+        }
+        
+        /* Bounce effect */
+        .bounce-text {
+          display: inline-block;
+        }
+        .bounce-text span {
+          display: inline-block;
+        }
+        .bounce-text span:nth-child(1) { animation: bounce 0.5s ease infinite alternate; }
+        .bounce-text span:nth-child(2) { animation: bounce 0.5s ease 0.1s infinite alternate; }
+        .bounce-text span:nth-child(3) { animation: bounce 0.5s ease 0.2s infinite alternate; }
+        .bounce-text span:nth-child(4) { animation: bounce 0.5s ease 0.3s infinite alternate; }
+        .bounce-text span:nth-child(5) { animation: bounce 0.5s ease 0.4s infinite alternate; }
+        @keyframes bounce {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-5px); }
+        }
+      `}</style>
     </section>
   );
 };
