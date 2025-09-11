@@ -12,59 +12,51 @@ const RateCardSection = () => {
   const ratesData = [
     {
       id: 1,
-      title: "Basic Website",
-      price: "50,000",
-      duration: "2 months",
+      title: "Bronze",
+      price: "5,000",
+      duration: "Monthly",
       description: "Simple Blog Pages & Portfolio Websites (hosting excluded)",
       image: "/images/projects/1.png",
       tag: ["Tier 1"],
       services: [{ service: "Starting at", price: "50,000", duration: "in 2 months" }],
       details: [
-        "Up to 5 responsive pages",
-        "Basic contact form",
+        "Work Out Plan",
+        "Diet Plan",
         "SEO optimization",
-        "1 month support",
-        "Mobile-friendly design"
       ]
     },
     {
       id: 2,
-      title: "Business Website(hosting excluded)",
-      price: "100,000",
-      duration: "6 months",
+      title: "Silver",
+      price: "10,000",
+      duration: "Monthly",
       description: "Professional website for small & medium businesses",
       image: "/images/projects/2.png",
       tag: ["Tier 2"],
       services: [{ service: "Starting at", price: "100,000", duration: "in 3-6 months" }],
       details: [
-        "Up to 15 responsive pages",
-        "Custom design",
-        "Mailing",
-        "CMS integration",
-        "SEO setup",
-        "3 months support",
-        "Analytics integration",
-        "Hosting advice",
+        "Work Out Plan",
+        "Diet Plan",
+        "Gym Access",
+        "2nd Tier access",
       ]
     },
     {
       id: 3,
-      title: "Custom Software",
-      price: "200,000",
-      duration: "6 months adjustable",
+      title: "Gold",
+      price: "25,000",
+      duration: "Monthly",
       description: "Professional software for large businesses",
       image: "/images/pro_software.jpg",
       tag: ["Tier 3"],
       services: [{ service: "Starting at", price: "200,000", duration: "in ~6 months" }],
       details: [
-        "Professional Website",
-        "Landing Page",
-        "Mailing",
-        "6 months support",
-        "CMS integration",
-        "SEO setup",
-        "Analytics integration",
-        "1year hosting",
+        "Diet Plan",
+        "Work Out Plan",
+        "Professional Guidance",
+        "Gym Access",
+        "Premium access to our Software",
+        "Online sessions"
       ]
     }
     // Add other tiers similarly...
@@ -85,7 +77,7 @@ const RateCardSection = () => {
     <section id="rates" className="py-12 bg-[#181818] min-h-screen">
       <div className="container mx-auto px-4">
         <h2 className="text-center text-4xl font-bold text-white mb-8 md:mb-12">
-          My Rates
+          Our Rates
         </h2>
         
         <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
@@ -110,7 +102,6 @@ const RateCardSection = () => {
               className="w-full flex justify-center"
             >
               <RateCard
-                imgUrl={rate.image}
                 title={rate.title}
                 description={rate.description}
                 rates={rate.services}

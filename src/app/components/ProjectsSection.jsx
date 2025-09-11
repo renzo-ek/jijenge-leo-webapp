@@ -7,28 +7,28 @@ import { motion, useInView } from "framer-motion";
 const projectsData = [
   {
     id: 1,
-    title: "NGO Website",
+    title: "Full Body",
     description: "ACME KENYA NGO",
     image: "/images/projects/1.png",
-    tag: ["All", "Web"],
+    tag: ["All", "Fitness"],
     gitUrl: "/",
     previewUrl: "https://www.acmekenya.org/",
   },
   {
     id: 2,
-    title: "Photography Portfolio Website",
+    title: "Upper Body",
     description: "House Of Pixel",
     image: "/images/projects/2.png",
-    tag: ["All", "Web"],
+    tag: ["All", "Fitness"],
     gitUrl: "/",
     previewUrl: "https://edge-d.vercel.app/",
   },
   {
     id: 3,
-    title: "Medical Alliance Application",
+    title: "Lower Body",
     description: "Private Community Site",
     image: "/images/projects/3.png",
-    tag: ["All", "Web"],
+    tag: ["All", "Fitness"],
     gitUrl: "/",
     previewUrl: "/",
   },
@@ -37,25 +37,25 @@ const projectsData = [
     title: "Ecommerce Application",
     description: "In Re-development",
     image: "/images/projects/4.png",
-    tag: ["All", "Mobile"],
+    tag: ["All", "Diet"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 5,
-    title: "React Firebase Template",
+    title: "Bulking",
     description: "Authentication and CRUD operations",
     image: "/images/projects/5.png",
-    tag: ["All", "Web"],
+    tag: ["All", "Diet"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 6,
-    title: "SpareParts Mobile Application",
+    title: "Health Enhancement",
     description: "Autospares",
     image: "/images/projects/6.png",
-    tag: ["All", "Web"],
+    tag: ["All", "Diet"],
     gitUrl: "https://github.com/Imoite-zn/BidMartZ",
     previewUrl: "https://github.com/Imoite-zn/BidMartZ",
   },
@@ -92,13 +92,13 @@ const ProjectsSection = () => {
         />
         <ProjectTag
           onClick={handleTagChange}
-          name="Web"
-          isSelected={tag === "Web"}
+          name="Fitness"
+          isSelected={tag === "Fitness"}
         />
         <ProjectTag
           onClick={handleTagChange}
-          name="Mobile"
-          isSelected={tag === "Mobile"}
+          name="Diet"
+          isSelected={tag === "Diet"}
         />
       </div>
       <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
