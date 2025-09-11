@@ -1,22 +1,30 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
-import { TypeAnimation } from "react-type-animation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const HeroSection = () => {
   const videoRef = useRef(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [animationStyle, setAnimationStyle] = useState(0);
-  const [key, setKey] = useState(0); // Key to force re-render of TypeAnimation
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [textHeights, setTextHeights] = useState([]);
+  const textRefs = useRef([]);
+
+  const texts = [
+    "Jijenge Leo",
+    "Build the physicality of your dreams",
+    "Get jacked",
+    "Diet and Train with experts now"
+  ];
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
     };
     checkMobile();
-    
+
     const tryAutoPlay = () => {
       if (videoRef.current) {
         videoRef.current.play().catch(error => {
@@ -24,136 +32,64 @@ const HeroSection = () => {
         });
       }
     };
-    
+
     tryAutoPlay();
+
+    // Set up interval for carousel effect
+    const interval = setInterval(() => {
+      setCurrentTextIndex(prevIndex => (prevIndex + 1) % texts.length);
+    }, 3000); // Change text every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [texts.length]);
+
+  // Measure text heights after initial render
+  useEffect(() => {
+    if (textRefs.current.length > 0) {
+      const heights = textRefs.current.map(ref => {
+        return ref ? ref.offsetHeight : 0;
+      });
+      setTextHeights(heights);
+    }
   }, []);
 
-  // Function to cycle through animation styles
-  const cycleAnimationStyle = () => {
-    setAnimationStyle((prev) => (prev + 1) % 5);
-    setKey(prev => prev + 3); // Change key to force re-render
+  const handleVideoLoad = () => {
+    setIsVideoLoaded(true);
   };
 
-  // Different animation configurations
-  const getAnimationConfig = () => {
-    switch(animationStyle) {
-      case 1:
-        return {
-          className: "glitch-text",
-          cursor: true,
-          style: { position: 'relative' },
-          sequence: [
-            "Jijenge Leo",
-            1000,
-            "Build the physicality of your dreams",
-            1000,
-            "Get jacked",
-            1000,
-            "Diet and Train with experts now",
-            1000,
-          ]
-        };
-      /*
-      case 2:
-        return {
-          className: "gradient-text-animate",
-          cursor: false,
-          style: { 
-            background: 'linear-gradient(90deg, #ff8a00, #e52e71)', 
-            backgroundClip: 'text', 
-            WebkitBackgroundClip: 'text', 
-            color: 'transparent',
-            display: 'inline-block'
-          },
-          sequence: [
-            "Jijenge Leo",
-            800,
-            "Build the physicality of your dreams",
-            800,
-            "Get jacked",
-            800,
-            "Diet and Train with experts now",
-            800,
-          ]
-        };
-      case 3:
-        return {
-          className: "typewriter-effect",
-          cursor: true,
-          style: { fontFamily: 'monospace', borderRight: '3px solid white' },
-          sequence: [
-            "Jijenge Leo",
-            1200,
-            "Build the physicality of your dreams",
-            1200,
-            "Get jacked",
-            1200,
-            "Diet and Train with experts now",
-            1200,
-          ]
-        };
-      case 4:
-        return {
-          className: "bounce-text",
-          cursor: true,
-          style: { fontWeight: '900', display: 'inline-block' },
-          sequence: [
-            "Jijenge Leo",
-            600,
-            "Build the physicality of your dreams",
-            600,
-            "Get jacked",
-            600,
-            "Diet and Train with experts now",
-            600,
-          ]
-        };
-      */
-      default:
-        return {
-          className: "glitch-text",
-          cursor: true,
-          style: { position: 'relative' },
-          sequence: [
-            "Jijenge Leo",
-            1000,
-            "Build the physicality of your dreams",
-            1000,
-            "Get jacked",
-            1000,
-            "Diet and Train with experts now",
-            1000,
-          ]
-        };
-    }
-  };
-
-  const animationConfig = getAnimationConfig();
+  // Get the maximum height to prevent layout shifts
+  const maxTextHeight = textHeights.length > 0
+    ? Math.max(...textHeights)
+    : 0;
 
   return (
     <section className="relative lg:py-16 min-h-screen flex items-center overflow-hidden">
-      {/* Video Background */}
+      {/* Video Background with Image Fallback */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
         <div className="absolute inset-0 bg-black/70 z-10"></div>
+
+        {!isVideoLoaded && (
+          <div
+            className="absolute inset-0 w-full h-full bg-cover bg-center"
+            style={{ backgroundImage: "url('/images/hero-video-poster.jpg')" }}
+          ></div>
+        )}
+
         <video
           ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          className="w-full h-full object-cover"
-          onLoadedData={() => setIsVideoLoaded(true)}
+          className={`w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+          onLoadedData={handleVideoLoad}
+          onCanPlay={handleVideoLoad}
+          onLoadedMetadata={handleVideoLoad}
           poster="/images/hero-video-poster.jpg"
         >
           <source src="../videos/hero-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        
-        {!isVideoLoaded && (
-          <div className="absolute inset-0 flex items-center justify-center z-20">
-            <div className="animate-pulse text-gray-300">Loading video...</div>
-          </div>
-        )}
       </div>
 
       {/* Content */}
@@ -166,29 +102,28 @@ const HeroSection = () => {
             className="col-span-8 place-self-center text-center sm:text-left justify-self-start"
           >
             <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-7xl lg:leading-normal font-extrabold">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-600">
-                Hello,{" "}
-              </span>
               <br />
-              <div className="relative inline-block">
-                <TypeAnimation
-                  key={key} // Key to force re-render
-                  sequence={animationConfig.sequence}
-                  wrapper="span"
-                  speed={50}
-                  repeat={Infinity}
-                  className={`drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] ${animationConfig.className}`}
-                  style={animationConfig.style}
-                  cursor={animationConfig.cursor}
-                />
-                {/* Animation style toggle button */}
-                <button 
-                  onClick={cycleAnimationStyle}
-                  className="absolute -right-12 top-1/2 transform -translate-y-1/2 text-white bg-primary-500 rounded-full w-8 h-8 flex items-center justify-center text-sm opacity-70 hover:opacity-100 transition-opacity"
-                  title="Change text animation"
-                >
-                  <span className="transform rotate-90">A</span>
-                </button>
+              <div
+                className="relative overflow-hidden flex items-center justify-center sm:justify-start"
+                style={{ height: maxTextHeight > 0 ? `${maxTextHeight}px` : 'auto' }}
+              >
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={currentTextIndex}
+                    ref={el => textRefs.current[currentTextIndex] = el}
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -30, opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute w-full text-center sm:text-left drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] bounce-text"
+                    style={{
+                      fontWeight: '900',
+                      display: 'inline-block',
+                    }}
+                  >
+                    {texts[currentTextIndex]}
+                  </motion.span>
+                </AnimatePresence>
               </div>
             </h1>
             <p className="text-[#F1F1F1] text-base sm:text-lg mb-6 lg:text-xl drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
@@ -211,7 +146,7 @@ const HeroSection = () => {
               </Link>
             </div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -219,15 +154,28 @@ const HeroSection = () => {
             className="col-span-4 place-self-center mt-8 lg:mt-0"
           >
             <div className="rounded-full bg-gradient-to-br from-primary-500/20 to-secondary-500/20 w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative overflow-hidden shadow-2xl border-4 border-white/10">
+              {/* Image with proper sizing and positioning */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-white text-lg font-semibold">Fitness Transformation</span>
+                <div className="relative w-full h-full rounded-full overflow-hidden">
+                  <Image
+                    src="/gifs/flex.gif"
+                    alt="Fitness Transformation"
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+              </div>
+              {/* Text overlay */}
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <span className="text-white text-lg font-semibold bg-black/40 px-3 py-1 rounded-lg">
+                  Fitness Transformation
+                </span>
               </div>
             </div>
           </motion.div>
         </div>
       </div>
-
-      {/* Animation-specific styles */}
     </section>
   );
 };
