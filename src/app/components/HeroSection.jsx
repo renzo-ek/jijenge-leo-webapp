@@ -148,7 +148,7 @@ const HeroSection = () => {
                     exit={{ y: -30, opacity: 0 }}
                     transition={{ duration: 0.5 }}
                     className={`absolute drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] bounce-text ${isLongText ? 'lg:w-[40%]' : 'w-full'
-                      } text-center sm:text-left`}
+                      } text-center sm:text-center sm:relative sm: left-10 my-10`}
                     style={{
                       fontWeight: '800',
                       // display: 'inline-block',
@@ -169,7 +169,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="col-span-4 place-self-center mt-8 lg:mt-0 relative z-10"
+            className="col-span-4 place-self-center mt-8 lg:mt-0 relative z-10 sm:mt-10"
           >
             <div className="rounded-full bg-gradient-to-br from-primary-500/20 to-secondary-500/20 w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative overflow-hidden shadow-2xl border-4 border-white/10">
               {/* Image with proper sizing and positioning */}
@@ -195,7 +195,7 @@ const HeroSection = () => {
               <p className="text-[#F1F1F1] text-base sm:text-lg mb-6 lg:text-xl drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] relative z-10 font-mono">
                 Your dream body is just a click away
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 relative z-10">
+              <div className="flex flex-col sm:flex-row gap-4 relative z-10 sm:bottom-20">
                 <Link
                   href="/#contact"
                   className="px-6 inline-block py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-amber-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
