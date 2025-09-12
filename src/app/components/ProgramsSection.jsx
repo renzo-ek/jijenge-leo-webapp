@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
-import ProjectCard from "./ProjectCard";
-import ProjectTag from "./ProjectTag";
+import ProgramCard from "./ProgramCard";
+import ProgramTag from "./ProgramTag";
 import { motion, useInView } from "framer-motion";
 
 const programsData = [
@@ -61,7 +61,7 @@ const programsData = [
   },
 ];
 
-const ProjectsSection = () => {
+const ProgramsSection = () => {
   const [tag, setTag] = useState("All");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -85,17 +85,17 @@ const ProjectsSection = () => {
         Our Programs
       </h2>
       <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
-        <ProjectTag
+        <ProgramTag
           onClick={handleTagChange}
           name="All"
           isSelected={tag === "All"}
         />
-        <ProjectTag
+        <ProgramTag
           onClick={handleTagChange}
           name="Fitness"
           isSelected={tag === "Fitness"}
         />
-        <ProjectTag
+        <ProgramTag
           onClick={handleTagChange}
           name="Diet"
           isSelected={tag === "Diet"}
@@ -110,7 +110,7 @@ const ProjectsSection = () => {
             animate={isInView ? "animate" : "initial"}
             transition={{ duration: 0.3, delay: index * 0.4 }}
           >
-            <ProjectCard
+            <ProgramCard
               key={project.id}
               title={project.title}
               description={project.description}
@@ -125,4 +125,4 @@ const ProjectsSection = () => {
   );
 };
 
-export default ProjectsSection;
+export default ProgramsSection;

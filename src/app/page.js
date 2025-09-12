@@ -1,6 +1,6 @@
 import HeroSection from "./components/HeroSection";
 import Navbar from "./components/Navbar";
-import ProgramsSection from "./components/ProgramsSect";
+import ProgramsSection from "./components/ProgramsSection";
 import EmailSection from "./components/EmailSection";
 import RateCardSection from "./components/RateCardSect";
 import Footer from "./components/Footer";

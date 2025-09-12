@@ -57,7 +57,7 @@ const EmailSection = () => {
         <p className="text-[#ADB7BE] mb-4 max-w-md font-mono">
           {" "}
           We are currently onboarding members, our inbox is always
-          open. Whether you have an inquiry or just want to say hi, we'll
+          open. Whether you have an inquiry or just want to say hi, we always
           respond to you!
         </p>
         <div className="socials flex flex-row gap-2">
