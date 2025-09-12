@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
-const RateCard = ({ title, description, rates, details }) => {
+const RateCard = ({ 
+  title, 
+  description, 
+  rates, 
+  details, 
+  titleBgColor = "bg-orange-400", 
+  titleTextColor = "text-white" 
+}) => {
   return (
     <div className="w-full items-center max-w-xl bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 flex md:flex-row">
-
-      {/* Right Column - Detailed Information */}
-      <div className=" p-6 w-full items-center">
-        {/* Price Tag Title */}
-        <div className="bg-orange-400 py-2 px-4 mb-4 rounded-md w-full">
-          <h2 className="text-xl font-bold text-white text-center">{title}</h2>
+      {/* Detailed Information */}
+      <div className="p-6 w-full items-center">
+        {/* Price Tag Title - Now with customizable colors */}
+        <div className={`py-2 px-4 mb-4 rounded-md w-full ${titleBgColor}`}>
+          <h2 className={`text-xl font-bold text-center font-mono ${titleTextColor}`}>
+            {title}
+          </h2>
         </div>
 
         {/* Main Description */}

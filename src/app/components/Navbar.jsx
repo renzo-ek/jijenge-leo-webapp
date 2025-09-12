@@ -36,6 +36,7 @@ const Navbar = () => {
           className="text-2xl md:text-5xl text-white font-semibold"
         >
           <Image
+              className="rotate-continuous"
               src="/images/logo.png"
               alt="ISA"
               width={60}

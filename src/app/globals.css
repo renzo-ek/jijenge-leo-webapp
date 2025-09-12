@@ -23,6 +23,24 @@ body {
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
+/* Rotating Icon */
+
+.rotate-continuous {
+  animation: rotation 5s infinite linear;
+  /* Adjust duration as needed */
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+    /* Rotate almost 360 degrees to ensure continuous animation */
+  }
+}
+
 /* Gradient animation */
 .gradient-text-animate {
   background: linear-gradient(90deg, #ff8a00, #e52e71, #ff8a00);

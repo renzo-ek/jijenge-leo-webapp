@@ -4,12 +4,12 @@ import ProjectCard from "./ProjectCard";
 import ProjectTag from "./ProjectTag";
 import { motion, useInView } from "framer-motion";
 
-const projectsData = [
+const programsData = [
   {
     id: 1,
     title: "Full Body",
-    description: "ACME KENYA NGO",
-    image: "/images/projects/1.png",
+    description: "Cardio and Strength Training",
+    image: "/images/programs/plank.jpg",
     tag: ["All", "Fitness"],
     gitUrl: "/",
     previewUrl: "https://www.acmekenya.org/",
@@ -17,8 +17,8 @@ const projectsData = [
   {
     id: 2,
     title: "Upper Body",
-    description: "House Of Pixel",
-    image: "/images/projects/2.png",
+    description: "From Arms to Chest",
+    image: "/images/programs/crunch.jpg",
     tag: ["All", "Fitness"],
     gitUrl: "/",
     previewUrl: "https://edge-d.vercel.app/",
@@ -26,17 +26,17 @@ const projectsData = [
   {
     id: 3,
     title: "Lower Body",
-    description: "Private Community Site",
-    image: "/images/projects/3.png",
+    description: "Froms Abs to Glutes",
+    image: "/images/programs/lower_body.jpg",
     tag: ["All", "Fitness"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 4,
-    title: "Ecommerce Application",
-    description: "In Re-development",
-    image: "/images/projects/4.png",
+    title: "Physique Maintenance",
+    description: "Maintaining your body",
+    image: "/images/programs/body_diet.jpg",
     tag: ["All", "Diet"],
     gitUrl: "/",
     previewUrl: "/",
@@ -44,8 +44,8 @@ const projectsData = [
   {
     id: 5,
     title: "Bulking",
-    description: "Authentication and CRUD operations",
-    image: "/images/projects/5.png",
+    description: "Weight Gain Program",
+    image: "/images/programs/gym_gear.jpg",
     tag: ["All", "Diet"],
     gitUrl: "/",
     previewUrl: "/",
@@ -53,8 +53,8 @@ const projectsData = [
   {
     id: 6,
     title: "Health Enhancement",
-    description: "Autospares",
-    image: "/images/projects/6.png",
+    description: "Vitamin, Diet and Supplements",
+    image: "/images/programs/diet_1.jpg",
     tag: ["All", "Diet"],
     gitUrl: "https://github.com/Imoite-zn/BidMartZ",
     previewUrl: "https://github.com/Imoite-zn/BidMartZ",
@@ -70,7 +70,7 @@ const ProjectsSection = () => {
     setTag(newTag);
   };
 
-  const filteredProjects = projectsData.filter((project) =>
+  const filteredProjects = programsData.filter((project) =>
     project.tag.includes(tag)
   );
 
@@ -81,8 +81,8 @@ const ProjectsSection = () => {
 
   return (
     <section id="projects">
-      <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
-        My Projects
+      <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12 font-mono">
+        Our Programs
       </h2>
       <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
         <ProjectTag
