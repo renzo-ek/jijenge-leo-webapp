@@ -191,11 +191,11 @@ const HeroSection = () => {
                 </span>
               </div>
             </div>
-            <div className="absolute bottom-0 right-0">
-              <p className="text-[#F1F1F1] text-base sm:text-lg mb-6 lg:text-xl drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] relative z-10 font-mono">
+            <div className="absolute bottom-0 right-0 sm:top-20 top-24">
+              <p className="text-[#F1F1F1] text-base sm:text-lg top-10 mb-6 lg:text-xl drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] relative z-10 font-mono">
                 Your dream body is just a click away
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 relative z-10 sm:bottom-20">
+              {/* <div className="flex flex-col sm:flex-row gap-4 relative z-10 sm:top-40 justify-center sm:justify-end">
                 <Link
                   href="/#contact"
                   className="px-6 inline-block py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-amber-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
@@ -207,6 +207,25 @@ const HeroSection = () => {
                   className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-amber-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white mt-3 sm:mt-0 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   <span onClick={handleDownloadClick} className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
+                    Get Our Policies
+                  </span>
+                </Link>
+              </div> */}
+              <div className="flex flex-col sm:flex-row gap-4 relative z-10 top-24 sm:top-40 justify-center sm:justify-end">
+                <Link
+                  href="/#contact"
+                  className="px-6 py-3 w-full sm:w-auto text-center rounded-full bg-gradient-to-br from-amber-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  Reach Out
+                </Link>
+                <Link
+                  href="/"
+                  className="px-6 py-3 w-full sm:w-auto text-center rounded-full bg-gradient-to-br from-amber-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  <span
+                    onClick={handleDownloadClick}
+                    className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2"
+                  >
                     Get Our Policies
                   </span>
                 </Link>
