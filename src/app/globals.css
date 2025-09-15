@@ -130,3 +130,67 @@ body {
   transform: skewX(20deg);
   display: block;
 }
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-hover);
+}
+
+.theme-toggle-icons {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.theme-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.2s ease;
+}
+
+.theme-icon.light {
+  opacity: var(--light-icon-opacity, 1);
+}
+
+.theme-icon.dark {
+  opacity: var(--dark-icon-opacity, 0);
+}
+
+.theme-toggle.dark .theme-icon.light {
+  opacity: 0;
+}
+
+.theme-toggle.dark .theme-icon.dark {
+  opacity: 1;
+}
+
+.theme-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* For screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

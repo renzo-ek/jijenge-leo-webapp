@@ -47,31 +47,31 @@ const EmailSection = () => {
   return (
     <section
       id="contact"
-      className="grid md:grid-cols-2 my-12 md:my-12 py-24 gap-4 relative"
+      className="grid md:grid-cols-2 my-12 md:my-12 py-24 gap-4 relative bg-gray-50 dark:bg-gray-900 px-4 rounded-lg"
     >
       <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-900 to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-1/2"></div>
       <div className="z-10">
-        <h5 className="text-xl font-bold text-white my-2 font-mono">
+        <h5 className="text-xl font-bold text-gray-800 dark:text-white my-2 font-mono">
           Chat with Us
         </h5>
-        <p className="text-[#ADB7BE] mb-4 max-w-md font-mono">
+        <p className="text-gray-600 dark:text-[#ADB7BE] mb-4 max-w-md font-mono">
           {" "}
           We are currently onboarding members, our inbox is always
           open. Whether you have an inquiry or just want to say hi, we always
           respond to you!
         </p>
         <div className="socials flex flex-row gap-2">
-          <Link href="https://github.com/Imoite-zn">
-          <FaWhatsapp size={40} color="lime"/>
+          <Link href="https://github.com/Imoite-zn" className="hover:opacity-80 transition-opacity">
+            <FaWhatsapp size={40} className="text-lime-600 dark:text-lime-500" />
           </Link>
-          <Link href="https://www.linkedin.com/in/lawrence-imoite-0925c11">
-          <FaInstagram size={40} color="purple"/>
+          <Link href="https://www.linkedin.com/in/lawrence-imoite-0925c11" className="hover:opacity-80 transition-opacity">
+            <FaInstagram size={40} className="text-purple-600 dark:text-purple-500" />
           </Link>
         </div>
       </div>
       <div>
         {emailSubmitted ? (
-          <p className="text-green-500 text-sm mt-2">
+          <p className="text-green-600 dark:text-green-500 text-sm mt-2">
             Email sent successfully!
           </p>
         ) : (
@@ -79,7 +79,7 @@ const EmailSection = () => {
             <div className="mb-6">
               <label
                 htmlFor="email"
-                className="text-white block mb-2 text-sm font-medium"
+                className="text-gray-800 dark:text-white block mb-2 text-sm font-medium"
               >
                 Your email
               </label>
@@ -88,14 +88,14 @@ const EmailSection = () => {
                 type="email"
                 id="email"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-white dark:bg-[#18191E] border border-gray-300 dark:border-[#33353F] placeholder-gray-500 dark:placeholder-[#9CA2A9] text-gray-800 dark:text-gray-100 text-sm rounded-lg block w-full p-2.5 focus:ring-2 focus:ring-amber-500 dark:focus:ring-amber-500 focus:border-transparent transition-colors"
                 placeholder="yourmail@google.com"
               />
             </div>
             <div className="mb-6">
               <label
                 htmlFor="subject"
-                className="text-white block text-sm mb-2 font-medium"
+                className="text-gray-800 dark:text-white block text-sm mb-2 font-medium"
               >
                 Subject
               </label>
@@ -104,27 +104,27 @@ const EmailSection = () => {
                 type="text"
                 id="subject"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-white dark:bg-[#18191E] border border-gray-300 dark:border-[#33353F] placeholder-gray-500 dark:placeholder-[#9CA2A9] text-gray-800 dark:text-gray-100 text-sm rounded-lg block w-full p-2.5 focus:ring-2 focus:ring-amber-500 dark:focus:ring-amber-500 focus:border-transparent transition-colors"
                 placeholder="Just saying hi"
               />
             </div>
             <div className="mb-6">
               <label
                 htmlFor="message"
-                className="text-white block text-sm mb-2 font-medium"
+                className="text-gray-800 dark:text-white block text-sm mb-2 font-medium"
               >
                 Message
               </label>
               <textarea
                 name="message"
                 id="message"
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-white dark:bg-[#18191E] border border-gray-300 dark:border-[#33353F] placeholder-gray-500 dark:placeholder-[#9CA2A9] text-gray-800 dark:text-gray-100 text-sm rounded-lg block w-full p-2.5 focus:ring-2 focus:ring-amber-500 dark:focus:ring-amber-500 focus:border-transparent transition-colors min-h-[120px]"
                 placeholder="Let's talk about..."
               />
             </div>
             <button
               type="submit"
-              className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-lg w-full"
+              className="bg-amber-600 hover:bg-amber-700 dark:bg-primary-500 dark:hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-lg w-full transition-colors duration-300"
             >
               Send Message
             </button>

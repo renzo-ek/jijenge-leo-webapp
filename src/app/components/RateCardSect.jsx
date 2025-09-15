@@ -6,7 +6,6 @@ import RateCard from "./RateCard";
 import { FaAppStoreIos } from "react-icons/fa";
 import { FaAndroid } from "react-icons/fa6";
 
-
 const RateCardSection = () => {
   const [tag, setTag] = useState("Tier 1");
   const ref = useRef(null);
@@ -68,27 +67,6 @@ const RateCardSection = () => {
       titleBgColor: "bg-yellow-500", // Gold color
       titleTextColor: "text-gray-900"
     },
-    // Tier four to come with the app launch
-    // {
-    //   id: 4,
-    //   title: "Platinum",
-    //   price: "40,000",
-    //   duration: "Monthly",
-    //   description: "Enterprise-grade solutions with premium support",
-    //   image: "/images/pro_software.jpg",
-    //   tag: ["Tier 3"],
-    //   services: [{ service: "Starting at", price: "40,000", duration: "monthly" }],
-    //   details: [
-    //     "All Gold features",
-    //     "24/7 dedicated support",
-    //     "Custom integrations",
-    //     "Priority feature requests",
-    //     "Advanced analytics"
-    //   ],
-    //   titleBgColor: "bg-blue-400", // Platinum color
-    //   titleTextColor: "text-white"
-    // }
-    // Add other tiers similarly...
   ];
 
   const handleTagChange = (newTag) => {
@@ -103,13 +81,13 @@ const RateCardSection = () => {
   };
 
   return (
-    <section id="rates" className="py-12 bg-[#181818] min-h-screen">
+    <section id="rates" className="py-12 bg-gray-50 dark:bg-[#181818] min-h-screen">
       <div className="container mx-auto px-4">
-        <h2 className="text-center text-4xl font-bold text-white mb-8 md:mb-12 font-mono">
+        <h2 className="text-center text-4xl font-bold text-gray-800 dark:text-white mb-8 md:mb-12 font-mono">
           Our Rates
         </h2>
-        
-        <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
+
+        <div className="text-gray-700 dark:text-white flex flex-row justify-center items-center gap-2 py-6">
           {["Tier 1", "Tier 2", "Tier 3"].map((tier) => (
             <RateTag
               key={tier}
@@ -142,16 +120,16 @@ const RateCardSection = () => {
           ))}
         </div>
 
-        <p className="text-center text-white text-lg mt-12 max-w-3xl mx-auto">
+        <p className="text-center text-gray-700 dark:text-white text-lg mt-12 max-w-3xl mx-auto">
           We are working on a crossplatform app to be fit with you anywhere you wish to work out!
         </p>
-        <p className="text-center text-white text-lg mt-12 max-w-3xl mx-auto">
-          The app is still in construction 🛠️. 
+        <p className="text-center text-gray-700 dark:text-white text-lg mt-12 max-w-3xl mx-auto">
+          The app is still in construction 🛠️.
           Coming soon to your favorite app stores.
         </p>
         <div className="items-center justify-center flex mt-10">
-          <FaAppStoreIos size={60} className="mx-4 text-sky-400"/>
-          <FaAndroid size={60} className="mx-4 text-lime-500"/>
+          <FaAppStoreIos size={60} className="mx-4 text-sky-500 dark:text-sky-400" />
+          <FaAndroid size={60} className="mx-4 text-lime-600 dark:text-lime-500" />
         </div>
       </div>
     </section>
