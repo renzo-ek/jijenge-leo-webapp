@@ -12,7 +12,7 @@ const programsData = [
     image: "/images/programs/plank.jpg",
     tag: ["All", "Fitness"],
     gitUrl: "/",
-    previewUrl: "https://www.acmekenya.org/",
+    previewUrl: "/",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const programsData = [
     image: "/images/programs/crunch.jpg",
     tag: ["All", "Fitness"],
     gitUrl: "/",
-    previewUrl: "https://edge-d.vercel.app/",
+    previewUrl: "/",
   },
   {
     id: 3,
@@ -56,8 +56,8 @@ const programsData = [
     description: "Vitamin, Diet and Supplements",
     image: "/images/programs/diet_1.jpg",
     tag: ["All", "Diet"],
-    gitUrl: "https://github.com/Imoite-zn/BidMartZ",
-    previewUrl: "https://github.com/Imoite-zn/BidMartZ",
+    gitUrl: "/",
+    previewUrl: "/",
   },
 ];
 
